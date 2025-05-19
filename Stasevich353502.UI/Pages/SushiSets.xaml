@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Stasevich353502.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:Stasevich353502.Domain.Entities;assembly=Stasevich353502.Domain"
+             xmlns:valueConverter="clr-namespace:Stasevich353502.UI.ValueConverters"
+             x:DataType="models:SushiSetsViewModel"
+             x:Class="Stasevich353502.UI.Pages.SushiSets">
+    <ContentPage.Resources>
+        <valueConverter:RateToColorValueConverter x:Key="MyRateToColorConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <Label
+                Text="Выберите суши сет:" />
+            <Picker ItemsSource="{Binding SushiSets}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedSushiSet}">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                    Command="{Binding UpdateSushiListCommand}">
+                    </toolkit:EventToCommandBehavior>
+                </Picker.Behaviors>
+            </Picker>
+            <Frame BorderColor="LightGray"
+                   HasShadow="True"
+                   Padding="10"
+                   CornerRadius="1"
+                   Margin="0,5,0,10">
+                <Grid RowDefinitions="Auto, Auto, Auto" 
+                      ColumnDefinitions="Auto, Auto"
+                      ColumnSpacing="10"
+                      >
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Выбранный сет:" />
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding SelectedSushiSet.Name}" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Цена" />
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding SelectedSushiSet.Price}" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Вес:" />
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding SelectedSushiSet.Weight}"></Label>
+                </Grid>
+            </Frame>
+            <CollectionView 
+                ItemsSource="{Binding Sushi}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:Sushi">
+                        <Frame BorderColor="{Binding Amount, Converter={StaticResource MyRateToColorConverter}}"
+                               CornerRadius="15"
+                               HasShadow="True"
+                               Padding="5"
+                               Margin="5">
+                            <Grid RowDefinitions="Auto, Auto, Auto" 
+                                  ColumnDefinitions="Auto, Auto"
+                                  ColumnSpacing="10"
+                                  Margin="5">
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Название: " />
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding SushiData.SushiName}"></Label>
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Тип: " />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding SushiData.SushiType}"></Label>
+                                <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Количество в сете: " />
+                                <Label Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding Amount}"></Label>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded" 
+                                        Command="{Binding UpdateSushiSetsListCommand}" />
+    </ContentPage.Behaviors>
+</ContentPage>

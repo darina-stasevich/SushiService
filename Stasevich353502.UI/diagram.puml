@@ -1,0 +1,19 @@
+@startuml
+
+User --> (Manage Sushi sets)
+(Manage Sushi sets) <.. (Add sushi set) : extend
+(Manage Sushi sets) <. (Edit sushi set) : extend
+
+User -> (View Sushi set detail)
+User --> (Select Sushi set)
+User --> (View sushi in Sushi set)
+(View sushi in Sushi set) ..> (Select Sushi set) : include
+(View Sushi set detail) .> (Select Sushi set) : include
+
+User -> (Manage sushi)
+(Manage sushi) <.. (Basic CRUD operations) : extend
+(Manage sushi) <.. (Add photo) : extend
+(Manage sushi) <.. (Add to Sushi set) : extend
+(Manage sushi) <. (Alter Sushi set) : extend
+
+@enduml
