@@ -7,12 +7,11 @@ using Stasevich353502.UI.ViewModels;
 
 namespace Stasevich353502.UI.Pages;
 
-public partial class SushiSets : ContentPage
+public partial class SushiDetailsPage : ContentPage
 {
-    public SushiSets(SushiSetsViewModel viewModel)
+    public SushiDetailsPage(SushiDetailsViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
-        Routing.RegisterRoute("SushiDetailsPage", typeof(SushiDetailsPage));
     }
 }

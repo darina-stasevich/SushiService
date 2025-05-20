@@ -20,8 +20,7 @@
                     SelectedItem="{Binding SelectedSushiSet}">
                 <Picker.Behaviors>
                     <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
-                                                    Command="{Binding UpdateSushiListCommand}">
-                    </toolkit:EventToCommandBehavior>
+                                                    Command="{Binding UpdateSushiListCommand}" />
                 </Picker.Behaviors>
             </Picker>
             <Frame BorderColor="LightGray"
@@ -29,10 +28,9 @@
                    Padding="10"
                    CornerRadius="1"
                    Margin="0,5,0,10">
-                <Grid RowDefinitions="Auto, Auto, Auto" 
+                <Grid RowDefinitions="Auto, Auto, Auto"
                       ColumnDefinitions="Auto, Auto"
-                      ColumnSpacing="10"
-                      >
+                      ColumnSpacing="10">
                     <Label Grid.Row="0"
                            Grid.Column="0"
                            Text="Выбранный сет:" />
@@ -50,10 +48,10 @@
                            Text="Вес:" />
                     <Label Grid.Row="2"
                            Grid.Column="1"
-                           Text="{Binding SelectedSushiSet.Weight}"></Label>
+                           Text="{Binding SelectedSushiSet.Weight}" />
                 </Grid>
             </Frame>
-            <CollectionView 
+            <CollectionView
                 ItemsSource="{Binding Sushi}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="entities:Sushi">
@@ -62,7 +60,15 @@
                                HasShadow="True"
                                Padding="5"
                                Margin="5">
-                            <Grid RowDefinitions="Auto, Auto, Auto" 
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding
+                                        Source={
+                                        RelativeSource AncestorType={x:Type models:SushiSetsViewModel} },
+                                        Path=ShowDetailsCommand}"
+                                    CommandParameter="{Binding}" />
+                            </Frame.GestureRecognizers>
+                            <Grid RowDefinitions="Auto, Auto, Auto"
                                   ColumnDefinitions="Auto, Auto"
                                   ColumnSpacing="10"
                                   Margin="5">
@@ -71,19 +77,19 @@
                                        Text="Название: " />
                                 <Label Grid.Row="0"
                                        Grid.Column="1"
-                                       Text="{Binding SushiData.SushiName}"></Label>
+                                       Text="{Binding SushiData.SushiName}" />
                                 <Label Grid.Row="1"
                                        Grid.Column="0"
                                        Text="Тип: " />
                                 <Label Grid.Row="1"
                                        Grid.Column="1"
-                                       Text="{Binding SushiData.SushiType}"></Label>
+                                       Text="{Binding SushiData.SushiType}" />
                                 <Label Grid.Row="2"
                                        Grid.Column="0"
                                        Text="Количество в сете: " />
                                 <Label Grid.Row="2"
                                        Grid.Column="1"
-                                       Text="{Binding Amount}"></Label>
+                                       Text="{Binding Amount}" />
                             </Grid>
                         </Frame>
                     </DataTemplate>
@@ -92,7 +98,7 @@
         </VerticalStackLayout>
     </ContentPage.Content>
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded" 
+        <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateSushiSetsListCommand}" />
     </ContentPage.Behaviors>
 </ContentPage>

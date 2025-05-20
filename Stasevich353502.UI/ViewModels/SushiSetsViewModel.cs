@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Stasevich353502.Application.SushiSetUseCases.Queries;
 using Stasevich353502.Application.SushiUseCases.Queries;
+using Stasevich353502.UI.Pages;
 
 namespace Stasevich353502.UI.ViewModels;
 
@@ -50,5 +51,18 @@ public partial class SushiSetsViewModel(IMediator mediator) : ObservableObject
                 Sushi.Add(sushiItem);
             }
         }
+    }
+    
+    [RelayCommand]
+    async void ShowDetails(Sushi sushi) => await GotoDetailsPage(sushi);
+    
+    private async Task GotoDetailsPage(Sushi sushi)
+    {
+        IDictionary<string, object> parameters = new Dictionary<string, object>()
+        {
+            { "SelectedSushiObject", sushi }
+        };
+
+        await Shell.Current.GoToAsync(nameof(SushiDetailsPage), parameters);
     }
 }

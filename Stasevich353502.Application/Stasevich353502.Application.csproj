@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <Folder Include="SushiSetUseCases\Commands\" />
-      <Folder Include="SushiUseCases\Commands\" />
     </ItemGroup>
 
 </Project>

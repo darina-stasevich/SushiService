@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Stasevich353502.UI.Pages.SushiDetailsPage">
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <Button Text="I am button in details"
+                    MaximumHeightRequest="20"
+                    MaximumWidthRequest="20" />
+            <Button Text="I am button in details"
+                    MaximumHeightRequest="20"
+                    MaximumWidthRequest="20" />
+            <Grid RowDefinitions="Auto, Auto, Auto"
+                  ColumnDefinitions="Auto, Auto"
+                  ColumnSpacing="10"
+                  Margin="5">
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Название: " />
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding CurrentSushi.SushiData.SushiName}" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Тип: " />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding CurrentSushi.SushiData.SushiType}" />
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Количество в сете: " />
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Text="{Binding CurrentSushi.Amount}" />
+            </Grid>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
