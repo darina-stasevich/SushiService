@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui;
 using Stasevich353502.UI.Pages;
 using Stasevich353502.UI.ViewModels;
 
@@ -9,6 +10,8 @@ public static class DependencyInjection
     {
         services.AddSingleton<SushiSets>();
         services.AddTransient<SushiDetailsPage>();
+        services.AddTransient<CreateSushiSetPage>();
+        services.AddTransient<CreateSushiInSushiSetPage>();
         return services;
     }
     
@@ -16,6 +19,8 @@ public static class DependencyInjection
     {
         services.AddSingleton<SushiSetsViewModel>();
         services.AddTransient<SushiDetailsViewModel>();
+        services.AddTransient<CreateSushiSetViewModel>();
+        services.AddTransient<CreateSushiInSushiSetViewModel>();
         return services;
     }
 }

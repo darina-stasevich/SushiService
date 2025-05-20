@@ -8,5 +8,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
         Routing.RegisterRoute(nameof(SushiDetailsPage), typeof(SushiDetailsPage));
+        Routing.RegisterRoute(nameof(CreateSushiSetPage), typeof(CreateSushiSetPage));
+        Routing.RegisterRoute(nameof(CreateSushiInSushiSetPage), typeof(CreateSushiInSushiSetPage));
     }
 }

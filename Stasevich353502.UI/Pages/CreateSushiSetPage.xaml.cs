@@ -7,9 +7,9 @@ using Stasevich353502.UI.ViewModels;
 
 namespace Stasevich353502.UI.Pages;
 
-public partial class SushiSets : ContentPage
+public partial class CreateSushiSetPage : ContentPage
 {
-    public SushiSets(SushiSetsViewModel viewModel)
+    public CreateSushiSetPage(CreateSushiSetViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

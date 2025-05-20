@@ -14,8 +14,4 @@
       <ProjectReference Include="..\Stasevich353502.Domain\Stasevich353502.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="SushiSetUseCases\Commands\" />
-    </ItemGroup>
-
 </Project>

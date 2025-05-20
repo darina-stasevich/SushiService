@@ -13,8 +13,13 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <VerticalStackLayout>
-            <Label
-                Text="Выберите суши сет:" />
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="End" Margin="0,-45,0,15">
+                <Button Text="Создать новый сет"
+                        Command="{Binding CreateSushiSetCommand}" />
+                <Button Text="Добавить суши в текущий сет"
+                        Command="{Binding CreateSushiInSushiSetCommand}" />
+            </HorizontalStackLayout>
+            <Label Text="Выберите суши сет:" />
             <Picker ItemsSource="{Binding SushiSets}"
                     ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding SelectedSushiSet}">
