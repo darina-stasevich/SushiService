@@ -11,14 +11,57 @@
     <ContentPage.Resources>
         <valueConverter:RateToColorValueConverter x:Key="MyRateToColorConverter" />
     </ContentPage.Resources>
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, Auto" 
+              VerticalOptions="FillAndExpand" 
+              HorizontalOptions="FillAndExpand"
+              BackgroundColor="Plum">
+            <Label Grid.Column="0"
+                   Text="Суши Сеты" 
+                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" 
+                   FontSize="Subtitle"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="Start"
+                   Margin="0,0,10,0"/> 
+
+            <HorizontalStackLayout Grid.Column="1"
+                                     Spacing="5" 
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center">
+                <Button Command="{Binding CreateSushiSetCommand}"
+                        WidthRequest="36" 
+                        HeightRequest="36" 
+                        Padding="-20"
+                        BackgroundColor="Transparent"
+                        >
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="IcoFont" 
+                                         Glyph="&#xeec5;"
+                                         Size="30" 
+                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </Button.ImageSource>
+                </Button>
+
+                <Button Command="{Binding CreateSushiInSushiSetCommand}"
+                        WidthRequest="36"
+                        HeightRequest="36" 
+                        Padding="-20"
+                        BackgroundColor="Transparent"
+                        >
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="IcoFont" 
+                                         Glyph="&#xeb96;"
+                                         Size="30"
+                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </Button.ImageSource>
+                </Button>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
         <VerticalStackLayout>
-            <HorizontalStackLayout Spacing="10" HorizontalOptions="End" Margin="0,-45,0,15">
-                <Button Text="Создать новый сет"
-                        Command="{Binding CreateSushiSetCommand}" />
-                <Button Text="Добавить суши в текущий сет"
-                        Command="{Binding CreateSushiInSushiSetCommand}" />
-            </HorizontalStackLayout>
+            
             <Label Text="Выберите суши сет:" />
             <Picker ItemsSource="{Binding SushiSets}"
                     ItemDisplayBinding="{Binding Name}"

@@ -3,14 +3,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Stasevich353502.UI.Pages.SushiDetailsPage">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, Auto"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              BackgroundColor="Plum">
+            <Label Grid.Column="0"
+                   Text="Суши"
+                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                   FontSize="Subtitle"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="Start"
+                   Margin="0,0,10,0" />
+
+            <HorizontalStackLayout Grid.Column="1"
+                                   Spacing="5"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center">
+                <Button Command="{Binding UpdateSushiCommand}"
+                        WidthRequest="36"
+                        HeightRequest="36"
+                        Padding="-20"
+                        BackgroundColor="Transparent">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="IcoFont"
+                                         Glyph="&#xebf6;"
+                                         Size="30"
+                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                    </Button.ImageSource>
+                </Button>
+
+                <Button Command="{Binding DeleteSushiCommand}"
+                        WidthRequest="36"
+                        HeightRequest="36"
+                        Padding="-20"
+                        BackgroundColor="Transparent">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="IcoFont"
+                                         Glyph="&#xedec;"
+                                         Size="30"
+                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                    </Button.ImageSource>
+                </Button>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
         <VerticalStackLayout>
-            <Button Text="I am button in details"
-                    MaximumHeightRequest="20"
-                    MaximumWidthRequest="20" />
-            <Button Text="I am button in details"
-                    MaximumHeightRequest="20"
-                    MaximumWidthRequest="20" />
             <Grid RowDefinitions="Auto, Auto, Auto"
                   ColumnDefinitions="Auto, Auto"
                   ColumnSpacing="10"
