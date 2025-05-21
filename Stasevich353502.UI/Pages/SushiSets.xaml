@@ -10,15 +10,16 @@
              x:Class="Stasevich353502.UI.Pages.SushiSets">
     <ContentPage.Resources>
         <valueConverter:RateToColorValueConverter x:Key="MyRateToColorConverter" />
+        <valueConverter:IdToImageSourceConverter x:Key="MyIdToImageSourceConverter" />
     </ContentPage.Resources>
     <Shell.TitleView>
         <Grid ColumnDefinitions="*, Auto" 
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              BackgroundColor="Plum">
+              BackgroundColor="Tomato">
             <Label Grid.Column="0"
                    Text="Суши Сеты" 
-                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" 
+                   TextColor="White" 
                    FontSize="Subtitle"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
@@ -39,7 +40,7 @@
                         <FontImageSource FontFamily="IcoFont" 
                                          Glyph="&#xeec5;"
                                          Size="30" 
-                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                         Color="White"/>
                     </Button.ImageSource>
                 </Button>
 
@@ -49,11 +50,12 @@
                         Padding="-20"
                         BackgroundColor="Transparent"
                         >
+
                     <Button.ImageSource>
                         <FontImageSource FontFamily="IcoFont" 
                                          Glyph="&#xeb96;"
                                          Size="30"
-                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                         Color="White"/>
                     </Button.ImageSource>
                 </Button>
             </HorizontalStackLayout>
@@ -116,28 +118,30 @@
                                         Path=ShowDetailsCommand}"
                                     CommandParameter="{Binding}" />
                             </Frame.GestureRecognizers>
-                            <Grid RowDefinitions="Auto, Auto, Auto"
-                                  ColumnDefinitions="Auto, Auto"
+                            <Grid RowDefinitions="Auto"
+                                  ColumnDefinitions="Auto, Auto, *"
                                   ColumnSpacing="10"
                                   Margin="5">
+                                <Image Grid.Row="0" Grid.Column="0"
+                                       Source="{Binding Path=Id, Converter={StaticResource MyIdToImageSourceConverter}}"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       Aspect="AspectFill" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center">
+                                    <Image.Clip>
+                                        <RoundRectangleGeometry CornerRadius="100" 
+                                                                Rect="0,0,50,50" /> 
+                                    </Image.Clip>
+                                </Image>
                                 <Label Grid.Row="0"
-                                       Grid.Column="0"
-                                       Text="Название: " />
+                                       Grid.Column="1"
+                                       Text="{Binding SushiData.SushiType}"
+                                       FontSize="20"/>
                                 <Label Grid.Row="0"
-                                       Grid.Column="1"
-                                       Text="{Binding SushiData.SushiName}" />
-                                <Label Grid.Row="1"
-                                       Grid.Column="0"
-                                       Text="Тип: " />
-                                <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       Text="{Binding SushiData.SushiType}" />
-                                <Label Grid.Row="2"
-                                       Grid.Column="0"
-                                       Text="Количество в сете: " />
-                                <Label Grid.Row="2"
-                                       Grid.Column="1"
-                                       Text="{Binding Amount}" />
+                                       Grid.Column="2"
+                                       Text="{Binding SushiData.SushiName}"
+                                       FontSize="20"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>

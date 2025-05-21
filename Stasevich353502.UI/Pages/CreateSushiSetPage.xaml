@@ -6,26 +6,27 @@
              x:DataType="viewModels:CreateSushiSetViewModel"
              x:Class="Stasevich353502.UI.Pages.CreateSushiSetPage"
              Title="Создать сет">
-       <Shell.TitleView>
-              <HorizontalStackLayout
-                     VerticalOptions="FillAndExpand" 
-                     HorizontalOptions="FillAndExpand"
-                     BackgroundColor="Plum">
-                     <Label
-                            Text="Создать сет" 
-                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" 
-                            FontSize="Subtitle"
-                            FontAttributes="Bold"
-                            VerticalTextAlignment="Start"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="0,0,10,0"/> 
-              </HorizontalStackLayout>
-       </Shell.TitleView>
-       <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" 
-              ColumnDefinitions="Auto, Auto"
-              ColumnSpacing="15">
+    <Shell.TitleView>
+        <HorizontalStackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Tomato">
+            <Label
+                Text="Создать сет"
+                TextColor="White"
+                FontSize="Subtitle"
+                FontAttributes="Bold"
+                VerticalTextAlignment="Start"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Margin="0,0,10,0" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+              ColumnDefinitions="Auto, *"
+              ColumnSpacing="15"
+              Margin="15">
             <Label Grid.Row="0"
                    Grid.Column="0"
                    Text="Введите название сета:" />
@@ -53,7 +54,9 @@
             <Button Grid.Row="3"
                     Grid.Column="0"
                     Text="Добавить сет"
-                    Command="{Binding CreateSushiSetCommand}"></Button>
+                    BackgroundColor="Tomato"
+                    TextColor="White"
+                    Command="{Binding CreateSushiSetCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -2,16 +2,17 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:valueConverter="clr-namespace:Stasevich353502.UI.ValueConverters"
              x:Class="Stasevich353502.UI.Pages.SushiDetailsPage">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*, Auto"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
-              BackgroundColor="Plum">
+              BackgroundColor="Tomato">
             <Label Grid.Column="0"
                    Text="Суши"
-                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                   TextColor="White" 
                    FontSize="Subtitle"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
@@ -31,7 +32,7 @@
                         <FontImageSource FontFamily="IcoFont"
                                          Glyph="&#xebf6;"
                                          Size="30"
-                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                                         Color="White" />
                     </Button.ImageSource>
                 </Button>
 
@@ -44,37 +45,46 @@
                         <FontImageSource FontFamily="IcoFont"
                                          Glyph="&#xedec;"
                                          Size="30"
-                                         Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                                         Color="White" />
                     </Button.ImageSource>
                 </Button>
             </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>
+    <ContentPage.Resources>
+        <valueConverter:IdToImageSourceConverter x:Key="MyIdToImageSourceConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <VerticalStackLayout>
-            <Grid RowDefinitions="Auto, Auto, Auto"
-                  ColumnDefinitions="Auto, Auto"
-                  ColumnSpacing="10"
-                  Margin="5">
-                <Label Grid.Row="0"
-                       Grid.Column="0"
-                       Text="Название: " />
-                <Label Grid.Row="0"
-                       Grid.Column="1"
-                       Text="{Binding CurrentSushi.SushiData.SushiName}" />
-                <Label Grid.Row="1"
-                       Grid.Column="0"
-                       Text="Тип: " />
-                <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding CurrentSushi.SushiData.SushiType}" />
-                <Label Grid.Row="2"
-                       Grid.Column="0"
-                       Text="Количество в сете: " />
-                <Label Grid.Row="2"
-                       Grid.Column="1"
-                       Text="{Binding CurrentSushi.Amount}" />
-            </Grid>
-        </VerticalStackLayout>
+        <Grid RowDefinitions="*, Auto, Auto, Auto"
+              ColumnDefinitions="Auto, *"
+              ColumnSpacing="10"
+              Margin="5">
+            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   Source="{Binding Path=CurrentSushi.Id, Converter={StaticResource MyIdToImageSourceConverter}}"
+                   Aspect="AspectFill" 
+                   HeightRequest="300"
+                   WidthRequest="300"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+            />
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Название: " />
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding CurrentSushi.SushiData.SushiName}" />
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Тип: " />
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding CurrentSushi.SushiData.SushiType}" />
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Количество в сете: " />
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding CurrentSushi.Amount}" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

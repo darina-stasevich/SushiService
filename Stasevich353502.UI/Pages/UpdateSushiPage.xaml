@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Stasevich353502.UI.ViewModels"
+             xmlns:valueConverter="clr-namespace:Stasevich353502.UI.ValueConverters"
              x:DataType="viewModels:UpdateSushiViewModel"
              x:Class="Stasevich353502.UI.Pages.UpdateSushiPage"
              Title="Редактировать суши">
@@ -10,10 +11,10 @@
               <HorizontalStackLayout
                     VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand"
-                    BackgroundColor="Plum">
+                    BackgroundColor="Tomato">
                      <Label
                             Text="Редактирование данных" 
-                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" 
+                            TextColor="White" 
                             FontSize="Subtitle"
                             FontAttributes="Bold"
                             VerticalTextAlignment="Start"
@@ -22,49 +23,69 @@
                             Margin="0,0,10,0"/> 
               </HorizontalStackLayout>
        </Shell.TitleView>
-                     
+       <ContentPage.Resources>
+              <valueConverter:IdToImageSourceConverter x:Key="MyIdToImageSourceConverter" />
+       </ContentPage.Resources>
        <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" 
-              ColumnDefinitions="Auto, Auto"
+        <Grid RowDefinitions="*, Auto, Auto, Auto, Auto, Auto" 
+              ColumnDefinitions="Auto, *"
               ColumnSpacing="15">
-               <Label Grid.Row="0"
+               <Image x:Name="PreviewImageDisplay"
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      Source="{Binding PreviewImageSource}"
+                      Aspect="AspectFill"
+                      HeightRequest="200"
+                      WidthRequest="200" />
+               <Button Text="Выбрать изображение (PNG)"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Command="{Binding PickImageCommand}"
+                       HorizontalOptions="End"
+                       MaximumHeightRequest="60"
+                       BackgroundColor="Tomato"
+                       TextColor="White"
+                       Margin="0,5,0,15"/>
+               <Label Grid.Row="1"
                       Grid.Column="0"
                       Text="Выберите суши сет:" />
                <Picker x:Name="SushiSetPicker"
-                       Grid.Row="0"
+                       Grid.Row="1"
                        Grid.Column="1"
                        ItemsSource="{Binding SushiSets}"
                        ItemDisplayBinding="{Binding Name}"
                        SelectedItem="{Binding SelectedSushiSet}">
                </Picker>
-               <Label Grid.Row="1"
+               <Label Grid.Row="2"
                       Grid.Column="0"
                       Text="Название типа суши:" />
             <Entry x:Name="TypeEntry"
-                   Grid.Row="1"
+                   Grid.Row="2"
                    Grid.Column="1"
                    Placeholder="{Binding CurrentSushi.SushiData.SushiType}"
                    Text="{Binding SushiType}" />
-            <Label Grid.Row="2"
+            <Label Grid.Row="3"
                    Grid.Column="0"
                    Text="Название суши:" />
             <Entry x:Name="NameEntry"
-                   Grid.Row="2"
+                   Grid.Row="3"
                    Grid.Column="1"
                    Placeholder="{Binding CurrentSushi.SushiData.SushiName}"
                    Text="{Binding Name}" />
-            <Label Grid.Row="3"
+            <Label Grid.Row="4"
                    Grid.Column="0"
                    Text="Введите количество суши в сете" />
             <Entry x:Name="AmountEntry"
-                   Grid.Row="3"
+                   Grid.Row="4"
                    Grid.Column="1"
                    Keyboard="Numeric"
                    Placeholder="{Binding CurrentSushi.Amount}"
                    Text="{Binding Amount}" />
-            <Button Grid.Row="4"
+            <Button Grid.Row="5"
                     Grid.Column="0"
                     Text="Изменить информацию"
+                    BackgroundColor="Tomato"
+                    TextColor="White"
                     Command="{Binding UpdateSushiCommand}"></Button>
         </Grid>
     </ContentPage.Content>

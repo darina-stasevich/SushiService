@@ -3,57 +3,80 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Stasevich353502.UI.ViewModels"
+             xmlns:valueConverter="clr-namespace:Stasevich353502.UI.ValueConverters"
              x:DataType="viewModels:CreateSushiInSushiSetViewModel"
              x:Class="Stasevich353502.UI.Pages.CreateSushiInSushiSetPage"
              Title="Добавить суши в набор">
-       <Shell.TitleView>
-              <HorizontalStackLayout
-                     VerticalOptions="FillAndExpand" 
-                     HorizontalOptions="FillAndExpand"
-                     BackgroundColor="Plum">
-                     <Label
-                            Text="Добавить суши в набор" 
-                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" 
-                            FontSize="Subtitle"
-                            FontAttributes="Bold"
-                            VerticalTextAlignment="Start"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="0,0,10,0"/> 
-              </HorizontalStackLayout>
-       </Shell.TitleView>
-       <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" 
-              ColumnDefinitions="Auto, Auto"
-              ColumnSpacing="15">
-            <Label Grid.Row="0"
+    <Shell.TitleView>
+        <HorizontalStackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Tomato">
+            <Label
+                Text="Добавить суши в набор"
+                TextColor="White"
+                FontSize="Subtitle"
+                FontAttributes="Bold"
+                VerticalTextAlignment="Start"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Margin="0,0,10,0" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+              ColumnDefinitions="Auto, *"
+              ColumnSpacing="15"
+              Margin="15">
+
+            <Image x:Name="PreviewImageDisplay"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Source="{Binding PreviewImageSource}"
+                   Aspect="AspectFill"
+                   HeightRequest="200"
+                   WidthRequest="200" />
+            <Button Text="Выбрать изображение (PNG)"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Command="{Binding PickImageCommand}"
+                    HorizontalOptions="End"
+                    MaximumHeightRequest="30"
+                    BackgroundColor="Tomato"
+                    TextColor="White"
+                    Margin="0,5,0,15"/>
+            <Label Grid.Row="1"
                    Grid.Column="0"
                    Text="Введите название типа суши:" />
             <Entry x:Name="TypeEntry"
-                   Grid.Row="0"
+                   Grid.Row="1"
                    Grid.Column="1"
                    Placeholder="Урамаки"
                    Text="{Binding SushiType}" />
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
                    Grid.Column="0"
                    Text="Введите название суши:" />
             <Entry x:Name="NameEntry"
-                   Grid.Row="1"
+                   Grid.Row="2"
                    Grid.Column="1"
                    Placeholder="Калифорния"
                    Text="{Binding Name}" />
-            <Label Grid.Row="2"
+            <Label Grid.Row="3"
                    Grid.Column="0"
                    Text="Введите количество суши в сете" />
             <Entry x:Name="AmountEntry"
-                   Grid.Row="2"
+                   Grid.Row="3"
                    Grid.Column="1"
                    Keyboard="Numeric"
                    Text="{Binding Amount}" />
-            <Button Grid.Row="3"
+            <Button Grid.Row="4"
                     Grid.Column="0"
                     Text="Добавить суши в набор"
-                    Command="{Binding AddSushiToSushiSetCommand}"></Button>
+                    BackgroundColor="Tomato"
+                    TextColor="White"
+                    Command="{Binding AddSushiToSushiSetCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
