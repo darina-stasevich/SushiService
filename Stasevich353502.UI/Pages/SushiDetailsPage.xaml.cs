@@ -14,4 +14,13 @@ public partial class SushiDetailsPage : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
     }
+    
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        if (BindingContext is SushiDetailsViewModel viewModel)
+        {
+            await viewModel.LoadFreshSushiDataAsync();
+        }
+    }
 }

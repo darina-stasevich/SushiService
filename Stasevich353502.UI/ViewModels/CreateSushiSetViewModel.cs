@@ -25,7 +25,7 @@ public partial class CreateSushiSetViewModel(IMediator mediator) : ObservableObj
         bool priceValidationResult = await ValidatePrice(Price);
         bool weightValidationResult = await ValidateWeight(Weight);
 
-        if (nameValidationResult & priceValidationResult & weightValidationResult)
+        if (nameValidationResult && priceValidationResult && weightValidationResult)
         {
             var set = await mediator.Send(new AddSushiSetCommand(name, Decimal.Parse(price), Decimal.Parse(weight)));
             if (set != null)

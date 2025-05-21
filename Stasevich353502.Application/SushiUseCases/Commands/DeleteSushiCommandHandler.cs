@@ -5,5 +5,6 @@ public class DeleteSushiCommandHandler(IUnitOfWork UoW) : IRequestHandler<Delete
     public async Task Handle(DeleteSushiCommand request, CancellationToken cancellationToken)
     {
         await UoW.SushiRepository.DeleteAsync(request.Sushi, cancellationToken);
+        await UoW.SaveAllAsync();
     }
 }

@@ -29,7 +29,7 @@ public partial class CreateSushiInSushiSetViewModel(IMediator mediator) : Observ
         bool priceValidationResult = await ValidateName(Name);
         bool weightValidationResult = await ValidateAmount(Amount);
 
-        if (nameValidationResult & priceValidationResult & weightValidationResult)
+        if (nameValidationResult && priceValidationResult && weightValidationResult)
         {
             var sushi = await mediator.Send(new AddSushiCommand(new SushiData(name, sushiType), Int32.Parse(amount), currentSet.Id));
             if (sushi != null)

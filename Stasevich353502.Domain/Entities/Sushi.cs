@@ -19,8 +19,6 @@ public class Sushi : Entity
     public SushiData SushiData { get; private set; }
     public Guid SushiSetId { get; private set; }
     
-    public SushiSet? SushiSet { get; set; }
-
     public void AddToSet(Guid sushiSetId)
     {
         if (sushiSetId != Guid.Empty)
@@ -33,11 +31,22 @@ public class Sushi : Entity
     {
         SushiSetId = Guid.Empty;
     }
-
+    
+    public void UpdateCoreData(string newSushiName, string newSushiType)
+    {
+        if (string.IsNullOrWhiteSpace(newSushiName))
+            throw new ArgumentException("Название суши не может быть пустым.", nameof(newSushiName));
+        if (string.IsNullOrWhiteSpace(newSushiType))
+            throw new ArgumentException("Тип суши не может быть пустым.", nameof(newSushiType));
+            
+        SushiData = new SushiData(newSushiName, newSushiType);
+    }
+    
     public void ChangeAmount(int amount)
     {
-        if (0 < amount && amount <= MaxSushiAmount)
-            Amount = amount;
+        if (0 < amount)
+            Amount = int.Max(amount, MaxSushiAmount);
+        
     }
 }
 

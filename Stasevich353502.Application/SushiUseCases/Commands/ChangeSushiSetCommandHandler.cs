@@ -12,6 +12,7 @@ public class ChangeSushiSetCommandHandler(IUnitOfWork UoW) : IRequestHandler<Cha
         }
 
         await UoW.SushiRepository.UpdateAsync(sushi, cancellationToken);
+        await UoW.SaveAllAsync();
         return sushi;
     }
 }

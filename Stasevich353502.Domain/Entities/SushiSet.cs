@@ -21,6 +21,7 @@ public class SushiSet : Entity
     public decimal Weight { get; private set; }
     
     //public IReadOnlyList<Sushi> GetSushi => _sushi.AsReadOnly();
+    
     public ICollection<Sushi> GetSushi {
         get => _sushi;
         private set => _sushi = (List<Sushi>)value; 

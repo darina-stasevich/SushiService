@@ -6,7 +6,23 @@
              x:DataType="viewModels:CreateSushiInSushiSetViewModel"
              x:Class="Stasevich353502.UI.Pages.CreateSushiInSushiSetPage"
              Title="Добавить суши в набор">
-    <ContentPage.Content>
+       <Shell.TitleView>
+              <HorizontalStackLayout
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="Plum">
+                     <Label
+                            Text="Добавить суши в набор" 
+                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" 
+                            FontSize="Subtitle"
+                            FontAttributes="Bold"
+                            VerticalTextAlignment="Start"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            Margin="0,0,10,0"/> 
+              </HorizontalStackLayout>
+       </Shell.TitleView>
+       <ContentPage.Content>
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" 
               ColumnDefinitions="Auto, Auto"
               ColumnSpacing="15">
@@ -24,11 +40,11 @@
             <Entry x:Name="NameEntry"
                    Grid.Row="1"
                    Grid.Column="1"
-                   Placeholder="Калифония"
+                   Placeholder="Калифорния"
                    Text="{Binding Name}" />
             <Label Grid.Row="2"
                    Grid.Column="0"
-                   Text="Введите суши в сете" />
+                   Text="Введите количество суши в сете" />
             <Entry x:Name="AmountEntry"
                    Grid.Row="2"
                    Grid.Column="1"

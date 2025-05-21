@@ -43,20 +43,25 @@ public partial class SushiSetsViewModel(IMediator mediator) : ObservableObject
     
     private bool CanUpdateSushiList()
     {
-        return _selectedSushiSet != null;
+        return SelectedSushiSet != null;
     }
 
     public async Task GetSushi()
     {
-        Sushi.Clear();
-        var sushi = await mediator.Send(new GetSushiBySetIdQuery(_selectedSushiSet.Id));
+        if(SelectedSushiSet == null)
+            return;
+        ObservableCollection<Sushi> newSushi = new();
+        var sushi = await mediator.Send(new GetSushiBySetIdQuery(SelectedSushiSet.Id));
         if (sushi != null)
-        {
-            foreach (var sushiItem in sushi)
             {
-                Sushi.Add(sushiItem);
+                foreach (var sushiItem in sushi)
+                {
+                    newSushi.Add(sushiItem);
+                }
             }
-        }
+
+        Sushi = newSushi;
+        OnPropertyChanged(nameof(Sushi));
     }
     
     [RelayCommand]
@@ -91,7 +96,7 @@ public partial class SushiSetsViewModel(IMediator mediator) : ObservableObject
 
     private async Task GoToCreateSushiInSushiSetPage()
     {
-        if(_selectedSushiSet == null)
+        if(SelectedSushiSet == null)
             return;
         IDictionary<string, object> parameters = new Dictionary<string, object>()
         {

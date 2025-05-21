@@ -4,7 +4,16 @@ public class UpdateSushiCommandHandler(IUnitOfWork UoW): IRequestHandler<UpdateS
 {
     public async Task<Sushi> Handle(UpdateSushiCommand request, CancellationToken cancellationToken)
     {
-        await UoW.SushiRepository.UpdateAsync(request.Sushi, cancellationToken);
-        return request.Sushi;
+        var sushi = await UoW.SushiRepository.GetByIdAsync(request.sushiId, cancellationToken);
+        if (sushi == null)
+        {
+            throw new Exception($"Sushi with id {request.sushiId} not found.");
+        }
+
+        sushi.UpdateCoreData(request.newSushiType, request.newSushiName);
+        sushi.ChangeAmount(request.newAmount);
+        await UoW.SushiRepository.UpdateAsync(sushi, cancellationToken);
+        await UoW.SaveAllAsync();
+        return sushi;
     }
 }
