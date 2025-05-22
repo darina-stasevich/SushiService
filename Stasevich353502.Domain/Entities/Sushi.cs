@@ -45,7 +45,7 @@ public class Sushi : Entity
     public void ChangeAmount(int amount)
     {
         if (0 < amount)
-            Amount = int.Max(amount, MaxSushiAmount);
+            Amount = int.Min(amount, MaxSushiAmount);
         
     }
 }
