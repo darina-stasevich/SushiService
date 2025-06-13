@@ -9,11 +9,13 @@
     
     <ShellContent
         Title="Home"
+        Icon="{FontImageSource FontFamily='IcoFont', Glyph='&#xef47;', Size=30, Color=Tomato}"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     
     <ShellContent
         Title="Sushi sets list"
+        Icon="{FontImageSource FontFamily='IcoFont', Glyph='&#xeb8b;', Size=30, Color=Tomato}"
         ContentTemplate="{DataTemplate pages:SushiSets}"
         Route="SushiSets" />
 

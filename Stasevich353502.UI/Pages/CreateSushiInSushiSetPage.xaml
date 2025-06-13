@@ -43,9 +43,11 @@
                     Grid.Column="1"
                     Command="{Binding PickImageCommand}"
                     HorizontalOptions="End"
-                    MaximumHeightRequest="30"
+                    VerticalOptions="End"
+                    MaximumHeightRequest="120"
                     BackgroundColor="Tomato"
                     TextColor="White"
+                    FontSize="8"
                     Margin="0,5,0,15"/>
             <Label Grid.Row="1"
                    Grid.Column="0"
